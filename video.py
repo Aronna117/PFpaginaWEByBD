@@ -53,7 +53,7 @@ conn = conectar_db()
 # Nueva función para enviar el estado de la placa al servidor web
 def enviar_estado_placa(estado):
     try:
-        url = 'http://localhost:3000'  # La dirección del servidor web
+        url = 'http://44.208.167.207:3000'  # La dirección del servidor web
         requests.post(f'{url}/update', json={'estado': estado})
     except Exception as e:
         print(f'Error al enviar datos al servidor: {e}')

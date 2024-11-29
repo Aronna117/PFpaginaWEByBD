@@ -39,11 +39,11 @@ app.get('/', (req, res) => {
 
 // Rutas para los feeds (original y procesado) - Se colocan primero para evitar conflictos
 app.get('/original_feed', (req, res) => {
-    res.redirect('http://localhost:5000/video_feed');
+    res.redirect('http://44.208.167.207:5000/video_feed');
 });
 
 app.get('/processed_feed', (req, res) => {
-    res.redirect('http://localhost:5000/processed_feed');
+    res.redirect('http://44.208.167.207:5000/processed_feed');
 });
 
 // Almacenar el último estado de la placa detectada
@@ -148,5 +148,5 @@ app.get('/search_plates', (req, res) => {
 
 // Iniciar el servidor
 server.listen(3000, () => {
-    console.log('Servidor web corriendo en http://localhost:3000');
+    console.log('Servidor web corriendo en http://44.208.167.207:3000');
 });

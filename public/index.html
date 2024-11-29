@@ -34,7 +34,7 @@
         // Función para obtener y mostrar las placas almacenadas en la base de datos
         async function fetchPlates() {
             try {
-                const response = await fetch("http://localhost:3000/plates");
+                const response = await fetch("http://44.208.167.207:3000/plates");
                 const plates = await response.json();
 
                 const platesTable = document.getElementById("plates-table");
@@ -64,7 +64,7 @@
         async function resetTable() {
             if (confirm('¿Estás seguro de que quieres reiniciar la tabla? Esto eliminará todos los registros.')) {
                 try {
-                    const response = await fetch("http://localhost:3000/reset_table", { method: 'POST' });
+                    const response = await fetch("http://44.208.167.207:3000/reset_table", { method: 'POST' });
                     const message = await response.text();
                     alert(message); // Muestra el mensaje del servidor
                     fetchPlates(); // Actualiza la tabla
@@ -89,7 +89,7 @@
             const queryString = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
 
             try {
-                const response = await fetch(`http://localhost:3000/search_plates${queryString}`);
+                const response = await fetch(`http://44.208.167.207:3000/search_plates${queryString}`);
                 const results = await response.json();
 
                 const searchResultsTable = document.getElementById("search-results");
@@ -140,13 +140,13 @@
         <!-- Sección de feed original -->
         <section id="live-feed">
             <h2>Live Feed (Original)</h2>
-            <img src="http://localhost:3000/original_feed" alt="Live Feed">
+            <img src="http://44.208.167.207:3000/original_feed" alt="Live Feed">
         </section>
 
         <!-- Sección de feed procesado -->
         <section id="processed-feed">
             <h2>Processed Feed</h2>
-            <img src="http://localhost:3000/processed_feed" alt="Processed Feed">
+            <img src="http://44.208.167.207:3000/processed_feed" alt="Processed Feed">
         </section>
 
         <!-- Sección de placas detectadas -->

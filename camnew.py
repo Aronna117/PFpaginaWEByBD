@@ -61,7 +61,7 @@ def start_ffmpeg_process():
 def send_plate_to_server(plate):
     """Enviar la placa detectada al servidor."""
     try:
-        requests.post('http://localhost:3000/update', json={'placa': plate})
+        requests.post('http://44.208.167.207:3000/update', json={'placa': plate})
         print(f"Placa enviada al servidor: {plate}")
     except requests.exceptions.RequestException as e:
         print(f"Error al enviar la placa al servidor: {e}")
