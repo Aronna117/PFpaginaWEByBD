@@ -5,10 +5,10 @@ from mysql.connector import Error
 def conectar_db():
     try:
         conn = mysql.connector.connect(
-            host="localhost",        # Cambia si tu servidor no es local
-            user="root",             # Usuario de MySQL
-            password="Aronna117",    # Contraseña de MySQL
-            database="placas_db"     # Nombre de tu base de datos
+            host=" database-2.cpquyyaciorx.us-east-1.rds.amazonaws.com",        # Cambia si tu servidor no es local
+            user="Sebastian",             # Usuario de MySQL
+            password="sebastian",    # Contraseña de MySQL
+            database="BaseData"     # Nombre de tu base de datos
         )
         if conn.is_connected():
             print("Conexión exitosa a la base de datos.")
@@ -21,7 +21,7 @@ def conectar_db():
 def verificar_placa(placa, conn):
     try:
         cursor = conn.cursor(dictionary=True)
-        query = "SELECT * FROM placas WHERE placa = %s"
+        query = "SELECT * FROM BaseData WHERE vehiculos; = %s"
         cursor.execute(query, (placa,))
         result = cursor.fetchone()
         cursor.close()

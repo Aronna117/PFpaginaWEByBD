@@ -11,10 +11,10 @@ const io = socketIo(server);
 
 // Conexión a la base de datos MySQL
 const db = mysql.createConnection({
-    host: 'database-1.c9smai8uer33.us-east-1.rds.amazonaws.com',
-    user: 'admin',
-    password: 'Aronna117',
-    database: 'placas_db',
+    host: 'database-2.cpquyyaciorx.us-east-1.rds.amazonaws.com',
+    user: 'Sebastian',
+    password: 'sebastian',
+    database: 'BaseData',
 });
 
 // Verificar la conexión a MySQL
@@ -72,13 +72,13 @@ app.post('/update', (req, res) => {
         io.emit('updatePlaca', { placa, timestamp: timestamp.toLocaleString() });
 
         // Guardar en la base de datos
-        const query = 'INSERT INTO placas (placa, timestamp) VALUES (?, ?)';
-        db.query(query, [placa, timestamp], (err) => {
+        const query = 'INSERT INTO vehiculos (placas, timestamp) VALUES (?, ?)';
+        db.query(query, [placas, timestamp], (err) => {
             if (err) {
                 console.error('Error al insertar en la base de datos:', err.message);
                 res.status(500).send('Error al guardar la placa en la base de datos.');
             } else {
-                console.log(`Placa "${placa}" guardada en la base de datos con timestamp.`);
+                console.log(`Placas "${placas}" guardada en la base de datos con timestamp.`);
                 res.sendStatus(200);
             }
         });
@@ -90,7 +90,7 @@ app.post('/update', (req, res) => {
 // Ruta para reiniciar la tabla
 app.post('/reset_table', (req, res) => {
     const resetQuery = `
-        TRUNCATE TABLE placas; -- Limpia todos los datos de la tabla
+        TRUNCATE TABLE vehiculos; -- Limpia todos los datos de la tabla
     `;
     db.query(resetQuery, (err, results) => {
         if (err) {
@@ -105,7 +105,7 @@ app.post('/reset_table', (req, res) => {
 
 // Ruta para obtener todas las placas almacenadas en la base de datos
 app.get('/plates', (req, res) => {
-    const query = 'SELECT id, placa, timestamp FROM placas ORDER BY timestamp DESC';
+    const query = 'SELECT id, placas, timestamp FROM vehiculos ORDER BY timestamp DESC';
     db.query(query, (err, results) => {
         if (err) {
             console.error('Error al obtener las placas de la base de datos:', err.message);
@@ -118,15 +118,15 @@ app.get('/plates', (req, res) => {
 
 // Ruta para buscar placas con parámetros opcionales (nombre y rango de fechas)
 app.get('/search_plates', (req, res) => {
-    const { placa, startTimestamp, endTimestamp } = req.query;
+    const { placas, startTimestamp, endTimestamp } = req.query;
 
-    let query = 'SELECT * FROM placas WHERE 1=1'; // Base query
+    let query = 'SELECT * FROM vehiculos WHERE 1=1'; // Base query
     const params = [];
 
     // Filtros opcionales
     if (placa) {
-        query += ' AND placa LIKE ?';
-        params.push(`%${placa}%`);
+        query += ' AND placas LIKE ?';
+        params.push(`%${placas}%`);
     }
     if (startTimestamp) {
         query += ' AND timestamp >= ?';
