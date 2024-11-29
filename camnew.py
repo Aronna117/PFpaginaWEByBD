@@ -12,13 +12,13 @@ import requests  # Importar requests para enviar datos al servidor
 app = Flask(__name__)
 
 # Configuración de Tesseract-OCR
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
 
 # URL RTSP de la cámara IP
 rtsp_url = "rtsp://admin:abcd1234..@181.236.158.144:554/Streaming/Channels/101"
 
 # Ruta completa al archivo ejecutable de FFmpeg
-ffmpeg_path = r"C:\ffmpeg\ffmpeg.exe"
+ffmpeg_path = "/usr/local/bin/ffmpeg"
 
 # Configura el tamaño de la ventana y la resolución
 width, height = 1280, 720
