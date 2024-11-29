@@ -151,3 +151,9 @@ app.get('/search_plates', (req, res) => {
 server.listen(3000, () => {
     console.log('Servidor web corriendo en http://44.208.167.207:3000');
 });
+
+console.log('Conectando a la base de datos con:');
+console.log(`Host: ${db.config.host}`);
+console.log(`Usuario: ${db.config.user}`);
+console.log(`Base de datos: ${db.config.database}`);
+console.log(`Puerto: ${db.config.port}`);
